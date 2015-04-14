@@ -20,6 +20,7 @@ $(function(){
 
 </script>
 	<div class="templatesbox">
+		<input type="hidden" id="jsapi_ticket" name="jsapi_ticket" value="${jsapi_ticket}"></input>
 		<div class="warp">
 			<div class="bgimg">
 				<img src="${ctxStatic}/activity/images/xbg.png" width="100%" /><img src="${ctxStatic}/activity/images/bgg.png"

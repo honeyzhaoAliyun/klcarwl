@@ -7,7 +7,7 @@ $(function(){
     //appid 公众平台获取
     $appId = "wx3e581d009676a86c";
     //jsapi_ticket
-    $ticket = "${jsapi_ticket}";
+    $ticket = $("#jsapi_ticket").val();
     // 获取长度为len的随机字符串
     function _getRandomString(len) {
         len = len || 32;
