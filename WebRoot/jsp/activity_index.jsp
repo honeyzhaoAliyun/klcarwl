@@ -7,12 +7,37 @@
  </head>
 <body>
 <script type="text/javascript" charset="utf-8" >
+var w=0,tip=$("<b>");
+var isStart=false;
+var isStop = false;
+var i = 10;
 $(function(){
-	var w=0,tip=$("<b>");
 	tip.css({
    			"z-index":99999,position:"absolute",color:"6633FF",display:"none"
     });
-	var i = 10;
+    
+	 /********点击次数统计  begin**********/
+     $("body").append(tip);//页面创建b标签用来显示数字
+     $("#robbing").on("click",function(e){
+     	  if(!isStart){
+   	  		isStart= true;
+   	  		countdown();
+     	  }
+     	  if(!isStop){
+     	  	var x=e.pageX,y=e.pageY;//获取点击页面坐标
+           	tip.text(++w).css({//数字加1
+             	display:"block",top:y-15,left:x,opacity:1//定位显示
+           	}).stop(!0,!1).animate({//stop(stopAll,goToEnd),如果发生多次点击时，要停止上一个动画的执行
+           	top:y-180,opacity:0},800,function(){
+              	tip.hide();
+           	}),
+           	e.stopPropagation();
+     	  }
+     });
+     /********点击次数统计  end**********/
+});
+
+function countdown(){
 	var t = setInterval(function(){
 		if (i<=0) {
 			/*<!-- 跳转抢话费结果页面！ --> */
@@ -29,20 +54,10 @@ $(function(){
 	   $("#timeclock").html(i);
 	   i--;
 	}, 1000);
-	 /********点击次数统计  begin**********/
-     $("body").append(tip);//页面创建b标签用来显示数字
-     $("#robbing").on("click",function(e){
-           var x=e.pageX,y=e.pageY;//获取点击页面坐标
-           tip.text(++w).css({//数字加1
-             display:"block",top:y-15,left:x,opacity:1//定位显示
-           }).stop(!0,!1).animate({//stop(stopAll,goToEnd),如果发生多次点击时，要停止上一个动画的执行
-           top:y-180,opacity:0},800,function(){
-              tip.hide();
-           }),
-           e.stopPropagation();
-     });
-     /********点击次数统计  end**********/
-});	
+	if(i ==0){
+		isStop = true;
+	}
+}
 </script>
 	<div class="templatesbox">
 		<input  type="hidden" id="sumtip"></input>
