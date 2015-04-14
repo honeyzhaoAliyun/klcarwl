@@ -759,6 +759,7 @@ public class IndexController extends BaseController {
 		        }
 		        //B 作为 分享者此时 则变成了 A
 		        mav.addObject("openidA", object.toString());
+		        mav.addObject("jsapi_ticket", request.getSession().getAttribute("jsapi_ticket"));
 			}
 			mav.setViewName("activity_validateSuccess");
 			return mav;
@@ -792,7 +793,7 @@ public class IndexController extends BaseController {
 		        		mav.addObject("BsumCost", BsumCost);
 		        	}
 		        	mav.addObject("userActivityList", userActivityList);
-		        	
+		        	mav.addObject("jsapi_ticket", request.getSession().getAttribute("jsapi_ticket"));
 		        }
 		        //B 作为 分享者此时 则变成了 A
 		        mav.addObject("openidA", object.toString());

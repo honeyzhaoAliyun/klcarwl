@@ -7,7 +7,7 @@ $(function(){
     //appid 公众平台获取
     $appId = "wx3e581d009676a86c";
     //jsapi_ticket
-    $ticket = "sM4AOVdWfPE4DxkXGEs8VBV25Q2XkI6iABfuyDUn7qrkyW7-Kl4zG1fNTRwzigSnw-2St-GF4SkXo5cqR5PtNA";
+    $ticket = "${jsapi_ticket}";
     // 获取长度为len的随机字符串
     function _getRandomString(len) {
         len = len || 32;
