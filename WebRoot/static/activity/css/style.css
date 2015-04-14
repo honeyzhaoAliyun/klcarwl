@@ -1,0 +1,461 @@
+@charset "utf-8";
+/* css document */
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+}
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after, q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+img {
+	border: none;
+	vertical-align: middle;
+	-ms-interpolation-mode: bicubic;
+}
+ul, ol, li, dl, dd, dt {
+	list-style: none;
+}
+a:link {
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: none;
+}
+a:active {
+	text-decoration: none;
+}
+a:visited {
+	text-decoration: none;
+}
+.blank {
+	height: 5px;
+}
+.blank2 {
+	height: 100px;
+}
+.blank3{height: 100px;}
+body {
+	width: 100%;
+	height: 100%;
+	min-width: 320px;
+	margin: 0 auto;
+	padding: 0px;
+	display: block;
+	background: #FFF;
+	font-family: '微软雅黑';
+}
+.templatesbox {
+	width: 100%;
+	position: relative;
+	min-width: 320px;
+	height: auto;
+	margin: 0 auto;
+	display: block;
+	text-align: center;
+	padding: 0;
+}
+.warp {
+	width: 100%;
+	display: block;
+}
+.bgimg {
+	width: 100%;
+	min-width: 320px;
+	border: 0px;
+	position: absolute;
+	z-index: -10;
+}
+.bgimg img {
+	margin: 0px;
+	padding: 0px;
+	border: 0px;
+	display: block;
+}
+.top {
+	width: 100%;
+	min-width: 320px;
+	margin: 0 auto;
+	padding: 0;
+	display: block;
+}
+.clock {
+	width: 30%;
+	width: 96px;
+	float: right;
+	margin-right: 10px;
+	display: block;
+}
+.clock img {
+	width: 80%;
+}
+.clock_text {
+	color: #FF0;
+	font-size: 20px;
+	font-family: '微软雅黑';
+	font-weight: 400;
+	text-align: center;
+}
+.logo {
+	width: 90%;
+	min-width: 288px;
+	margin: 0 auto;
+	display: block;
+	padding: 20px 0px 15px;
+}
+.logo img {
+	width: 60%;
+	margin-top: 7%;
+	margin-left: 7%;
+}
+.logo_win {
+	width: 90%;
+	min-width: 288px;
+	margin: 0 auto;
+	display: block;
+	padding: 20px 0px 15px;
+}
+.logo_win img {
+	width: 40%;
+	margin-left: 10%;
+}
+.glod_c {
+	width: 90%;
+	min-width: 32px;
+	margin: 0 auto;
+	display: block;
+	padding: 0;
+}
+.one_glod {
+	width: 10%;
+	min-width: 32px;
+	margin: 0 auto;
+	display: block;
+	padding: 0;
+}
+.one_glod img {
+	width: 90%;
+}
+.number {
+	width: 20%;
+	position: relative;
+	height: 100px;
+	z-index: 10;
+	float: right;
+	font-size: 30px;
+	color: #fff;
+}
+.number img {
+	width: 100%;
+	position: relative;
+	z-index: -1;
+}
+.glod {
+	width: 100%;
+	min-width: 320px;
+	margin: 0 auto;
+	display: block;
+	padding: 0;
+}
+.glod img {
+	width: 90%;
+}
+.btn {
+	width: 90%;
+	min-width: 300px;
+	margin: 5% auto;
+	display: block;
+}
+.btn img {
+	width: 50%;
+}
+.xbtn {
+	width: 100%;
+	min-width: 320px;
+	margin: 2% auto;
+	display: block;
+}
+.xbtn img {
+	width: 100%;
+}
+.content {
+	width: 100%;
+	margin-top: 40%;
+	text-align: left;
+	color: #F96;
+	line-height: 60px;
+}
+.contentr {
+	width: 100%;
+	margin-top: 20%;
+	text-align: left;
+	color: #F96;
+	line-height: 60px;
+}
+.content_win {
+	width: 100%;
+	margin-top: 20%;
+	text-align: center;
+	color: #F96;
+	line-height: 60px;
+}
+.content_win ul {
+	width: 70%;
+	border: #F96 1px dashed;
+	margin: 0 auto;
+	background: #FFF;
+	border-radius: 4px;
+}
+.footer {
+	width: 100%;
+	color: #666666;
+	text-align: center;
+	margin-bottom: 20px;
+}
+.footer img {
+	width: 50%;
+	margin: 10px auto;
+}
+.tishiActivity {
+    color: #fff;
+    font-family: "微软雅黑";
+    font-size: 13px;
+    line-height: 30px;
+    padding-top: 10px;
+    text-align: center;
+    width: 100%;
+}
+.tishiActivity2 {
+	width: 90%;
+	color: #FF0;
+	text-align: center;
+	line-height: 30px;
+	font-family: '微软雅黑';
+	font-size: 16px;
+	margin: 10px auto;
+	display: block;
+}
+.list {
+	width: 95%;
+	float: left;
+	margin: 10px;
+	display: block;
+	color: #666666;
+}
+.contentr ul li {
+	width: 92%;
+	float: left;
+	display: block;
+}
+.qiang {
+	width: 60%;
+	float: left;
+	margin-left: 10px;
+	display: block;
+}
+.date {
+	width: 30%;
+	float: right;
+	margin-right: 10px;
+	display: block;
+}
+.diceng {
+	width: 100%;
+	height: 100%;
+	min-width: 320px;
+	min-height: 480px;
+	
+}
+.zhishi {
+	width: 30%;
+	float: right;
+    display: block;
+    margin: 0 auto;
+    padding: 0;
+}
+.share {
+	width: 100%;
+	margin: 0 auto;
+	color: #FFF;
+	display: block;
+	line-height: 40px;
+	font-size: 18px;
+	padding-top: 50%;
+}
+.box {
+	width: 80%;
+	height: auto;
+	margin: 0 auto;
+	background: #FFF;
+	padding: 10px;
+	border-radius: 8px;
+	display: block;
+}
+.gb {
+	width: 100%;
+	float: right;
+}
+.gb img {
+	width: 8%;
+	float: right;
+	margin-right: 10px;
+}
+.box span {
+	font-size: 36px;
+	color: #e67817;
+}
+.tk {
+	width: 100%;
+	height: 50px;
+}
+.login {
+	width: 100%;
+	margin: 50px auto;
+	display: block;
+}
+.form-control {
+	display: block;
+	width: 95%;
+	height: auto;
+	min-height: 50px;
+	padding: 6px 12px;
+	font-size: 14px;
+	line-height: 40px;
+	color: #555;
+	margin-top: 10px;
+	background-color: #fff;
+	border: 3px solid #ff8830;
+	border-radius: 150px;
+}
+.form-control:focus {
+	border-color: #66afe9;
+	outline: 0;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102,175,233,.6);
+	box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102,175,233,.6)
+}
+.form-control:-moz-placeholder {
+color:#999
+}
+.form-control::-moz-placeholder {
+color:#999;
+opacity:1
+}
+.form-control:-ms-input-placeholder {
+color:#999
+}
+.form-control::-webkit-input-placeholder {
+color:#999
+}
+.form-control[disabled], .form-control[readonly],  .form-control {
+	cursor: not-allowed;
+	background-color: #eee;
+	opacity: 1
+}
+.user, .password {
+	width: 100%;
+	position: relative;
+	z-index: 1;
+}
+.user_en {
+    float: left;
+    margin-left: 75%;
+    margin-top: -56px;
+    min-height: 60px;
+    position: relative;
+    width: 20%;
+    z-index: 10;
+}
+.user_en span input {
+    background: none repeat scroll 0 0 #c56006;
+    border: 0 none;
+    border-radius: 18px;
+    color: #fff;
+    min-height: 54px;
+    text-align: center;
+    width: 100%;
+}
+.rule {
+	width: 90%;
+	height: auto;
+	margin: 0 auto;
+	display: block;
+}
+.rule_btn {
+	width: 90%;
+	margin: 0 auto;
+	display: block;
+	position: relative;
+	z-index: 10;
+}
+.rule_btn img {
+	width: 60%;
+	position: relative;
+	z-index: 10;
+	margin-top: -20%;
+}
+.logo_car {
+	width: 25%;
+	float: left;
+	margin-left: 10%;
+	margin-top: 4%;
+	display: block;
+	position: relative;
+	z-index: 8;
+}
+.logo_car img {
+	width: 40%;
+	height: auto;
+	display: block;
+}
+.over_logo {
+	width: 40%;
+	float: left;
+	margin-left: 5%;
+}
+.over_logo img {
+	width: 100%;
+}
+.over_ti {
+	width: 90%;
+	margin: 20px auto;
+}
+.over_ti img {
+	width: 100%;
+}
+.over_ewm {
+	width: 60%;
+	margin: 10px auto;
+}
+.over_ewm img {
+	width: 100%;
+}
+.over_btn {
+	width: 90%;
+	margin: 20px auto;
+}
+.over_btn img {
+	width: 100%;
+}
+.content_wo {
+	width: 100%;
+	margin-top: 10%;
+	text-align: left;
+	color: #F96;
+	line-height: 60px;
+}
