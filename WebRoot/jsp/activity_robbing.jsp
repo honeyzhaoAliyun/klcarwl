@@ -8,7 +8,7 @@
 <body>
 <script type="text/javascript">
 $(function(){
-	setTimeout(function(){window.location="<%=basePath %>registerActivity.do?sumCost=${sumCost}";},3000);
+	setTimeout(function(){window.location="<%=basePath %>registerActivity.do?sumCost=${sumCost}";},1500);
 });
 
 </script>
