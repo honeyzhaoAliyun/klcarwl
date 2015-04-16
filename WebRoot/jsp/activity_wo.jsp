@@ -150,7 +150,7 @@ $(function(){
 			<div class="blank2"></div>
 			<div class="box">
 				<div class="gb">
-					<img src="${ctxStatic}/activity/images/gb.png" />
+					<img src="${ctxStatic}/activity/images/gb.png" onclick="closeDivRSuccess()" />
 				</div>
 				<span>关注快乐物流领取话费</span> <img src="${ctxStatic}/activity/images/ts_ewm.png" width="90%" />
 				<p class="tk">长按二维码识别图中二维码 关注领话费</p>
