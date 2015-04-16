@@ -566,7 +566,7 @@ public class IndexController extends BaseController {
 	    	ModelAndView mav=new ModelAndView();
 			if(sumtip !=null && !sumtip.equals("")){
 				if(Integer.parseInt(sumtip) >0 ){
-					sumCost = Integer.parseInt(sumtip) * 0.05;
+					sumCost = Integer.parseInt(sumtip) * 0.01;
 				}
 				DecimalFormat df = new DecimalFormat("######0.00");
 				logger.info("B帮助A抢到金额为："+df.format(sumCost)+"元");
@@ -710,7 +710,6 @@ public class IndexController extends BaseController {
 	        userActivity.setIsUse("1");
 	        userActivity.setContent("");
 	        userActivity.setStatus(0);
-	        userActivityService.save(userActivity);
 	        logger.info("填写活动抢话费与用户中间表 ---相对于A的操作-成功");
 	        /**
 	         * 4)相对于b的操作  自己也抢到话费 XX元
@@ -727,6 +726,8 @@ public class IndexController extends BaseController {
 	        userActivityB.setIsUse("1");
 	        userActivityB.setContent("");
 	        userActivityB.setStatus(0);
+	        
+	        userActivityService.save(userActivity);
 	        userActivityService.save(userActivityB);
 	        logger.info("相对于b的操作  自己也抢到话费 XX元-成功");
 	        
