@@ -145,7 +145,7 @@ $(function(){
 				<div class="gb">
 					<img src="${ctxStatic}/activity/images/gb.png" />
 				</div>
-				<span>关注快乐物流领取话费</span> <img src="images/ts_ewm.png" width="90%" />
+				<span>关注快乐物流领取话费</span> <img src="${ctxStatic}/activity/images/ts_ewm.png" width="90%" />
 				<p class="tk">长按二维码识别图中二维码 关注领话费</p>
 			</div>
 		</div>
