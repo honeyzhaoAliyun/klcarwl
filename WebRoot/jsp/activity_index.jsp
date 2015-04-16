@@ -7,7 +7,7 @@
  </head>
 <body>
 <script type="text/javascript" charset="utf-8" >
-var w=0,tip=$("<b><img src="http://klcar.com/klcarwl/static/activity/images/moneyicon.png"></img>");
+var w=0,tip=$("<b>");
 var isStart=false;
 var isStop = false;
 var i = 10;
@@ -171,7 +171,8 @@ function countdown(){
 	    </center> --%>
 	    <div class="diceng">
 		    <div class="blank2"></div>
-		    <div class="rule"><img src="${ctxStatic}/activity/images/gz2.png" width="90%" />
+		    <div class="blank2"></div>
+		    <div class="rule"><img src="${ctxStatic}/activity/images/gz2.png" width="70%" />
 		    	<div class="rule_btn"><a href="javascript:void(0);" onclick="closeDivR()"><img src="${ctxStatic}/activity/images/btn_gz.png" /></a></div>
 		    </div>
 	  	</div>
