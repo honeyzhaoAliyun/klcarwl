@@ -118,11 +118,6 @@ $(function(){
 		document.getElementById('popIframe').style.display='block';
 		document.getElementById('bg').style.display='block';
 	}
-	function showDivRSuccess(){
-		document.getElementById('popDiv2').style.display='block';
-		document.getElementById('popIframe').style.display='block';
-		document.getElementById('bg').style.display='block';
-	}
 	function closeDivR(obj){
 		if(obj =='' || typeof(obj) == 'undefined'){
 			document.getElementById('popDiv').style.display='none';
@@ -130,6 +125,19 @@ $(function(){
 			document.getElementById('popIframe').style.display='none';
 		}
 	}
+	function showDivRSuccess(){
+		document.getElementById('popDiv2').style.display='block';
+		document.getElementById('popIframe').style.display='block';
+		document.getElementById('bg').style.display='block';
+	}
+	function closeDivRSuccess(obj){
+		if(obj =='' || typeof(obj) == 'undefined'){
+			document.getElementById('popDiv2').style.display='none';
+			document.getElementById('bg').style.display='none';
+			document.getElementById('popIframe').style.display='none';
+		}
+	}
+	
 	
 	</script>
 	</head>
