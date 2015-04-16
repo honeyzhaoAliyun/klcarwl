@@ -49,8 +49,8 @@ $(function(){
                 wx.onMenuShareQQ($shareData);
                 wx.onMenuShareWeibo($shareData);
             });
-
+            
         }
 
     });
-})
+});

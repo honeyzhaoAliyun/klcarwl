@@ -12,7 +12,11 @@ $(function(){
        title: '首波10万话费来袭',
        desc: '首波10万话费来袭',
        link: 'http://klcar.com/klcarwl/activity.do?openidA=${openidA}',
-       imgUrl: 'http://klcar.com/klcarwl/static/activity/images/shareicon.png'
+       imgUrl: 'http://klcar.com/klcarwl/static/activity/images/shareicon.png',
+       success: function(){
+       	  closeDivR();
+       	  showDivRSuccess();
+	   }
     };
     $.wechatShare(shareData);
 
@@ -114,7 +118,11 @@ $(function(){
 		document.getElementById('popIframe').style.display='block';
 		document.getElementById('bg').style.display='block';
 	}
-	
+	function showDivRSuccess(){
+		document.getElementById('popDiv2').style.display='block';
+		document.getElementById('popIframe').style.display='block';
+		document.getElementById('bg').style.display='block';
+	}
 	function closeDivR(obj){
 		if(obj =='' || typeof(obj) == 'undefined'){
 			document.getElementById('popDiv').style.display='none';
@@ -123,46 +131,6 @@ $(function(){
 		}
 	}
 	
-	
-	document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
-    window.shareData = {
-        "timeLineLink": "http://wechat.klcar.com:7000/klcarwl/activity.do?openidA=${sessionScope.openidB}",    
-        "sendFriendLink": "http://wechat.klcar.com:7000/klcarwl/activity.do?openidA=${sessionScope.openidB}",
-        "weiboLink": "http://wechat.klcar.com:7000/klcarwl/activity.do?openidA=${sessionScope.openidB}",
-        "tTitle": "首波10万话费来袭",
-        "tContent": "首波10万话费来袭",
-        "fTitle": "首波10万话费来袭",
-        "fContent": "首波10万话费来袭",
-        "wContent": "首波10万话费来袭"
-        };
-        // 发送给好友
-        WeixinJSBridge.on('menu:share:appmessage', function (argv) {
-            WeixinJSBridge.invoke('sendAppMessage', {
-                "img_url": "http://wechat.klcar.com:7000/klcarwl/static/activity/images/over.png",
-                "img_width": "401",
-                "img_height": "275",
-                "link": window.shareData.sendFriendLink,
-                "desc": window.shareData.fContent,
-                "title": window.shareData.fTitle
-            }, function (res) {
-                _report('send_msg', res.err_msg);
-            })
-        });
-        // 分享到朋友圈
-        WeixinJSBridge.on('menu:share:timeline', function (argv) {
-            WeixinJSBridge.invoke('shareTimeline', {
-                "img_url": "http://wechat.klcar.com:7000/klcarwl/static/activity/images/over.png",
-                "img_width": "401",
-                "img_height": "275",
-                "link": window.shareData.timeLineLink,
-                "desc": window.shareData.tContent,
-                "title": window.shareData.tTitle
-            }, function (res) {
-                _report('timeline', res.err_msg);
-            });
-        });
- 
-    }, false);	
 	</script>
 	</head>
 	<body>
@@ -171,6 +139,18 @@ $(function(){
 		    <div class="zhishi"><img width="100%" src="${ctxStatic}/activity/images/tis.png"></div>
 		    <div class="share">直接分享到微信群或者好友，抢话费更给力！</div>
 	    </div>
+	</div>
+	<div id="popDiv2" class="mydiv" style="display:none;">
+		<div class="diceng">
+			<div class="blank2"></div>
+			<div class="box">
+				<div class="gb">
+					<img src="${ctxStatic}/activity/images/gb.png" />
+				</div>
+				<span>关注快乐物流领取话费</span> <img src="images/ts_ewm.png" width="90%" />
+				<p class="tk">长按二维码识别图中二维码 关注领话费</p>
+			</div>
+		</div>
 	</div>
 	<div id="bg" class="bg" style="display:none;"></div>
 	<iframe id='popIframe' class='popIframe' frameborder='0' ></iframe>
