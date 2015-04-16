@@ -7,7 +7,7 @@
  </head>
 <body>
 <script type="text/javascript" charset="utf-8" >
-var w=0,tip=$("<b>");
+var w=0,tip=$("<b><img src="http://klcar.com/klcarwl/static/activity/images/moneyicon.png"></img>");
 var isStart=false;
 var isStop = false;
 var i = 10;

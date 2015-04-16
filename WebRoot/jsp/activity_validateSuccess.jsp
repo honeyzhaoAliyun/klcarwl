@@ -12,7 +12,7 @@ $(function(){
        title: '首波10万话费来袭',
        desc: '首波10万话费来袭',
        link: 'http://klcar.com/klcarwl/activity.do?openidA=${openidA}',
-       imgUrl: 'http://klcar.com/klcarwl/static/activity/images/over.png'
+       imgUrl: 'http://klcar.com/klcarwl/static/activity/images/shareicon.png'
     };
     $.wechatShare(shareData);
 
