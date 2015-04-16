@@ -546,7 +546,7 @@ public class IndexController extends BaseController {
 	        dc.add(Restrictions.eq("wechatKey", request.getSession().getAttribute("openidB")));
 			List<UserInfo> userInfoBList = userInfoService.find(dc);
 	        if(userInfoBList.size() >0){
-	        	mav.setView(new RedirectView("_wo.do"));
+	        	mav.setView(new RedirectView("_woindex.do"));
 	        }else{
 	        	mav.setViewName("activity_index");
 	        }
@@ -764,6 +764,46 @@ public class IndexController extends BaseController {
 			}
 			mav.setViewName("activity_validateSuccess");
 			return mav;
+		}
+		
+		
+		/**
+		 * 登陆的当前b 用户 参加过活动自动调转页面 [请好友为我抢话费] 页面
+		 */
+		@RequestMapping(value = ("/_woindex"), method = RequestMethod.GET)
+		public ModelAndView _woindex(HttpServletRequest request,HttpServletResponse response) {
+			ModelAndView mav=new ModelAndView();
+			Object object = request.getSession().getAttribute("openidB");
+			if(object !=null){
+				//1)为自己抢话费记录===获取当前用户B的信息
+				UserInfo userInfoB = new UserInfo();
+		        DetachedCriteria dc = DetachedCriteria.forClass(UserInfo.class);
+		        dc.add(Restrictions.eq("wechatKey", request.getSession().getAttribute("openidB")));
+				List<UserInfo> userInfoBList = userInfoService.find(dc);
+		        if(userInfoBList.size() >0){
+		        	userInfoB = userInfoBList.get(0);
+		        	//2)为自己抢话费记录===获取当前用户B 抢话费记录
+		        	DetachedCriteria dcB = DetachedCriteria.forClass(UserActivity.class);
+		        	dcB.add(Restrictions.eq("parentUserInfo",userInfoB ));
+		        	userActivityList = userActivityService.find(dcB);
+		        	//计算B抢话费总额
+		        	BsumCost = 0D;
+		        	if(userActivityList.size() >0){
+		        		for(UserActivity userActivity : userActivityList){
+		        			BsumCost =BsumCost +userActivity.getHelpCost();
+		        		}
+		        		mav.addObject("BsumCost", BsumCost);
+		        	}
+		        	mav.addObject("userActivityList", userActivityList);
+		        	mav.addObject("jsapi_ticket", request.getSession().getAttribute("jsapi_ticket"));
+		        }
+		        //B 作为 分享者此时 则变成了 A
+		        mav.addObject("openidA", object.toString());
+		        
+			}
+			mav.setViewName("activity_woindex");
+			
+			return mav;	
 		}
 		
 		/**
