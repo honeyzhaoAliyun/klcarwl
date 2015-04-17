@@ -28,10 +28,14 @@
 		</div>
 		<div class="content_win">
 			<img src="${ctxStatic}/activity/images/icon_m.png" /><b>&nbsp;获奖列表</b><br />
-			<ul>
-				<c:forEach  items="${userActivityList}" var="userActivity" varStatus="_index">
-					<li><img src="${ctxStatic}/activity/images/tou.png" width="5%" /> &nbsp;${userActivity.userInfo.userName }&nbsp;
-						${userActivity.userInfo.mobile }</li>
+			<ul class="list">
+				<c:forEach items="${userActivityList}" var="userActivityList" varStatus="index">
+					<li>
+						<span class="qiang">
+							<img src="${ctxStatic}/activity/images/tou.png" width="10%" />&nbsp;${userActivityList.userInfo.nickName }抢了${userActivityList.helpCost}  元&nbsp;&nbsp;
+						</span> 
+						<span class="date"><fmt:formatDate value="${userActivityList.createDate}" pattern="yyyy-MM-dd"/></span>
+					</li>
 				</c:forEach>
 			</ul>
 		</div>
@@ -39,5 +43,6 @@
 			<img src="${ctxStatic}/activity/images/ewm.png" />
 			<p>长按二维码识别图中二维码关注领话费</p>
 		</div>
+</div>
 </body>
 </html>
