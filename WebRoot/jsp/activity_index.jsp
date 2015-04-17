@@ -13,7 +13,7 @@ var isStop = false;
 var i = 10;
 $(function(){
 	tip.css({
-   			"z-index":99999,position:"absolute",color:"6633FF",display:"none"
+   			"z-index":99999,position:"absolute",color:"6633FF",display:"none","font-size":"30px"
     });
     
 	 /********点击次数统计  begin**********/
