@@ -29,18 +29,10 @@
 		<div class="content_win">
 			<img src="${ctxStatic}/activity/images/icon_m.png" /><b>&nbsp;获奖列表</b><br />
 			<ul>
-				<li><img src="${ctxStatic}/activity/images/tou.png" width="5%" /> &nbsp;张三&nbsp;
-					15896****721</li>
-				<li><img src="${ctxStatic}/activity/images/tou.png" width="5%" /> &nbsp;张三&nbsp;
-					15896****721</li>
-				<li><img src="${ctxStatic}/activity/images/tou.png" width="5%" /> &nbsp;张三&nbsp;
-					15896****721</li>
-				<li><img src="${ctxStatic}/activity/images/tou.png" width="5%" /> &nbsp;张三&nbsp;
-					15896****721</li>
-				<li><img src="${ctxStatic}/activity/images/tou.png" width="5%" /> &nbsp;张三&nbsp;
-					15896****721</li>
-				<li><img src="${ctxStatic}/activity/images/tou.png" width="5%" /> &nbsp;张三&nbsp;
-					15896****721</li>
+				<c:forEach  items="${userActivityList}" var="userActivity" varStatus="_index">
+					<li><img src="${ctxStatic}/activity/images/tou.png" width="5%" /> &nbsp;${userActivity.userInfo.userName }&nbsp;
+						${userActivity.userInfo.mobile }</li>
+				</c:forEach>
 			</ul>
 		</div>
 		<div class="footer">

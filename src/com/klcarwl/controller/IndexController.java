@@ -566,7 +566,7 @@ public class IndexController extends BaseController {
 	    	ModelAndView mav=new ModelAndView();
 			if(sumtip !=null && !sumtip.equals("")){
 				if(Integer.parseInt(sumtip) >0 ){
-					sumCost = Integer.parseInt(sumtip) * 0.01;
+					sumCost = Integer.parseInt(sumtip) * 0.015;
 				}
 				DecimalFormat df = new DecimalFormat("######0.00");
 				logger.info("B帮助A抢到金额为："+df.format(sumCost)+"元");
@@ -588,6 +588,12 @@ public class IndexController extends BaseController {
 		public ModelAndView winners(@RequestParam(value="openidA",required = false) String openidA,@RequestParam(value="openidB",required = false) String openidB,HttpServletRequest request,HttpServletResponse response) {	
 	    	logger.info("==========获奖人员列表=================");
 	    	ModelAndView mav=new ModelAndView();
+	    	
+	    	DetachedCriteria dc = DetachedCriteria.forClass(UserInfo.class);
+	        dc.add(Restrictions.eq("status", 1));
+	    	List<UserActivity> userActivityList = userActivityService.find(dc);
+	    	
+	    	mav.addObject("userActivityList", userActivityList);
 			mav.setViewName("activity_winners");
 			return mav;
 		}
