@@ -10,7 +10,6 @@
 var w=0,tip=$("<b>");
 var isStart=false;
 var isStop = false;
-var i = 10;
 $(function(){
 	tip.css({
    			"z-index":99999,position:"absolute",color:"6633FF",display:"none","font-size":"30px"
@@ -38,6 +37,7 @@ $(function(){
 });
 
 function countdown(){
+	var i = 10;
 	var t = setInterval(function(){
 		if (i<=0) {
 			/*<!-- 跳转抢话费结果页面！ --> */
