@@ -28,7 +28,7 @@
 		</div>
 		<div class="content_win">
 			<img src="${ctxStatic}/activity/images/icon_m.png" /><b>&nbsp;获奖列表</b><br />
-			<ul class="list">
+			<ul>
 				<c:forEach items="${userActivityList}" var="userActivityList" varStatus="index">
 					<li><img src="${ctxStatic}/activity/images/tou.png" width="5%" /> &nbsp;${userActivityList.userInfo.nickName }&nbsp;
 					${userActivityList.userInfo.mobile}</li>
