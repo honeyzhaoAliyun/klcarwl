@@ -589,8 +589,8 @@ public class IndexController extends BaseController {
 	    	logger.info("==========获奖人员列表=================");
 	    	ModelAndView mav=new ModelAndView();
 	    	
-	    	DetachedCriteria dc = DetachedCriteria.forClass(UserInfo.class);
-	        dc.add(Restrictions.eq("status", 1));
+	    	DetachedCriteria dc = DetachedCriteria.forClass(UserActivity.class);
+	        dc.add(Restrictions.eq("status", "1"));
 	    	List<UserActivity> userActivityList = userActivityService.find(dc);
 	    	
 	    	mav.addObject("userActivityList", userActivityList);
