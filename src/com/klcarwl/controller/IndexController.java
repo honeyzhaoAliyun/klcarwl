@@ -590,7 +590,7 @@ public class IndexController extends BaseController {
 	    	ModelAndView mav=new ModelAndView();
 	    	
 	    	DetachedCriteria dc = DetachedCriteria.forClass(UserActivity.class);
-	        dc.add(Restrictions.eq("status", "1"));
+	        dc.add(Restrictions.eq("status", 1));
 	    	List<UserActivity> userActivityList = userActivityService.find(dc);
 	    	
 	    	mav.addObject("userActivityList", userActivityList);
