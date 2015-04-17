@@ -30,12 +30,9 @@
 			<img src="${ctxStatic}/activity/images/icon_m.png" /><b>&nbsp;获奖列表</b><br />
 			<ul class="list">
 				<c:forEach items="${userActivityList}" var="userActivityList" varStatus="index">
-					<li>
-						<span class="qiang">
-							<img src="${ctxStatic}/activity/images/tou.png" width="10%" />&nbsp;${userActivityList.userInfo.nickName }抢了${userActivityList.helpCost}  元&nbsp;&nbsp;
-						</span> 
-						<span class="date"><fmt:formatDate value="${userActivityList.createDate}" pattern="yyyy-MM-dd"/></span>
-					</li>
+					<li><img src="${ctxStatic}/activity/images/tou.png" width="5%" /> &nbsp;${userActivityList.userInfo.nickName }&nbsp;
+					${userActivityList.userInfo.mobile}</li>
+					
 				</c:forEach>
 			</ul>
 		</div>

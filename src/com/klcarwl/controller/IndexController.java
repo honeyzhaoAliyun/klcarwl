@@ -592,7 +592,6 @@ public class IndexController extends BaseController {
 	    	DetachedCriteria dc = DetachedCriteria.forClass(UserActivity.class);
 	        dc.add(Restrictions.eq("status", 1));
 	    	List<UserActivity> userActivityList = userActivityService.find(dc);
-	    	
 	    	mav.addObject("userActivityList", userActivityList);
 			mav.setViewName("activity_winners");
 			return mav;
