@@ -170,7 +170,7 @@ function countdown(){
 	        <div class="p3" style="height:1px;overflow:hidden;background:red;width:294px;border-left:1px solid #ff6c00;border-right:1px solid #ff6c00"></div>
 	    </center> --%>
 	    <div class="diceng">
-		    <div class="blank2"></div>
+	    	<div class="blank2"></div>
 		    <div class="blank2"></div>
 		    <div class="rule"><img src="${ctxStatic}/activity/images/gz2.png" width="70%" />
 		    	<div class="rule_btn"><a href="javascript:void(0);" onclick="closeDivR()"><img src="${ctxStatic}/activity/images/btn_gz.png" /></a></div>

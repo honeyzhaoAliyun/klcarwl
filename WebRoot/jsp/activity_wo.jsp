@@ -141,7 +141,7 @@ $(function(){
 	<body>
 	<div id="popDiv" class="mydiv" style="display:none;">
 	    <div class="diceng">
-		    <div class="zhishi"><img width="100%" src="${ctxStatic}/activity/images/tis.png"></div>
+		    <div class="zhishi"><img width="70%" src="${ctxStatic}/activity/images/tis.png"></div>
 		    <div class="share">直接分享到微信群或者好友，抢话费更给力！</div>
 	    </div>
 	</div>
@@ -150,7 +150,7 @@ $(function(){
 			<div class="blank2"></div>
 			<div class="box">
 				<div class="gb">
-					<img src="${ctxStatic}/activity/images/gb.png" onclick="closeDivRSuccess()" />
+					<img width="70%" src="${ctxStatic}/activity/images/gb.png" onclick="closeDivRSuccess()" />
 				</div>
 				<span>关注快乐物流领取话费</span> <img src="${ctxStatic}/activity/images/ts_ewm.png" width="90%" />
 				<p class="tk">长按二维码识别图中二维码 关注领话费</p>
