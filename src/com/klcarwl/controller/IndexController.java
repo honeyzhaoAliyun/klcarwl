@@ -590,7 +590,7 @@ public class IndexController extends BaseController {
 	    	ModelAndView mav=new ModelAndView();
 	    	
 	    	DetachedCriteria dc = DetachedCriteria.forClass(UserInfo.class);
-	        dc.add(Restrictions.eq("status", 1));
+	        dc.add(Restrictions.eq("status", "1"));
 	    	List<UserInfo> userInfoList = userInfoService.find(dc);
 	    	mav.addObject("userInfoList", userInfoList);
 			mav.setViewName("activity_winners");
