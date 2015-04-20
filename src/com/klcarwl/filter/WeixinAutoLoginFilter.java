@@ -118,14 +118,14 @@ public class WeixinAutoLoginFilter implements Filter {
 					 * oauth授权
 					 */
 					//--------判断是否是活动页面 ：相应的判断是否弹出授权页面-----------
-					if(url.toString().contains("activity")){
+					/*if(url.toString().contains("activity")){
 						oauthUrl = RestUtil.oAuthgetInvoke("uri", ConstantUtil.get("WULIU_IP")+url.toString(),"snsapi_userinfo");
 					}else{
 						oauthUrl = RestUtil.oAuthgetInvoke("uri", ConstantUtil.get("WULIU_IP")+url.toString(),"snsapi_base");
 					}
 					
 					httpResponse.sendRedirect(oauthUrl);
-					return;
+					return;*/
 				}
 			}
 			
