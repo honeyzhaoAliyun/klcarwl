@@ -426,8 +426,25 @@ public class IndexController extends BaseController {
 				result = new Result(Result.ERROR, "请选择接受验证码通道类型", null);
 				return result;
 			}
-        	validateLogService.saveAndSendValidateMsg(type, sendTo, ids);
-        	return Result.successResult();
+	    	
+	    	ValidateLog validateLog=validateLogService.getValidateLogBySendTo(sendTo);
+	    	
+	    	long mintime = new Date().getTime() - validateLog.getModifyDate().getTime();
+	    	long day=mintime/(24*60*60*1000);
+	    	long hour=(mintime/(60*60*1000)-day*24);
+	    	long min=((mintime/(60*1000))-day*24*60-hour*60);
+	    	long s=(mintime/1000-day*24*60*60-hour*60*60-min*60);
+	    	//System.out.println(""+day+"天"+hour+"小时"+min+"分"+s+"秒");
+	    	/**
+	    	 * 5分钟才可下发短信
+	    	 */
+	    	if(day<=0 && hour<=0 && min<5){
+	    		result = new Result(Result.ERROR, "5分钟后再次下发请求验证码！", null);
+    			return result;
+	    	}else{
+	    		validateLogService.saveAndSendValidateMsg(type, sendTo, ids);
+	    		return Result.successResult();
+	    	}
 		}
 	    /**
 	     * --注册
