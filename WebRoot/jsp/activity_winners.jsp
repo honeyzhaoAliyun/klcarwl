@@ -1,4 +1,8 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"  %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
  <head>
@@ -29,10 +33,9 @@
 		<div class="content_win">
 			<img src="${ctxStatic}/activity/images/icon_m.png" /><b>&nbsp;获奖列表</b><br />
 			<ul>
-				<c:forEach items="${userActivityList}" var="userActivityList" varStatus="index">
-					<li><img src="${ctxStatic}/activity/images/tou.png" width="5%" /> &nbsp;${userActivityList.userInfo.nickName }&nbsp;
-					${userActivityList.userInfo.mobile}</li>
-					
+				<c:forEach items="${userInfoList}" var="userInfoList" varStatus="index">
+					<li><img src="${ctxStatic}/activity/images/tou.png" width="5%" /> &nbsp;${userInfoList.nickName }&nbsp;
+					<c:out value="${fn:substring(userInfoList.mobile,0,3)}" />****<c:out value="${fn:substring(userInfoList.mobile,3,userInfoList.mobile.length)}" /> </li>
 				</c:forEach>
 			</ul>
 		</div>
