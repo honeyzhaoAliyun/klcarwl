@@ -12,8 +12,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.klcarwl.model.HavefeeUser;
 import com.klcarwl.model.UserActivity;
 import com.klcarwl.model.UserInfo;
+import com.klcarwl.service.HavefeeUserService;
+import com.klcarwl.service.HavefeeUserServiceImpl;
 import com.klcarwl.service.UserActivityService;
 import com.klcarwl.service.UserActivityServiceImpl;
 import com.klcarwl.service.UserInfoService;
@@ -30,17 +33,25 @@ public class WechatUserServlet extends HttpServlet {
 	
 	private UserActivity userActivity;
 	
+	private HavefeeUser  havefeeUser;
+	
 	private List<UserInfo> userinfoList;
 	
 	private List<UserActivity> userActivityList;
 	
+	private List<HavefeeUser> havefeeUserList;
+	
+	//抢话费总额
 	private double sumcost =0D;
+	//已充值话费总额
+	private double sumhavefee =0D;
 
 	@SuppressWarnings("rawtypes")
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		userinfoList = new ArrayList<UserInfo>();
 		userActivityList = new ArrayList<UserActivity>();
+		havefeeUserList = new ArrayList<HavefeeUser>();
 		resp.setCharacterEncoding("UTF-8");
 		JSONObject jsonobject = new JSONObject();
 		JSONObject wechatuserJson = new JSONObject();
@@ -65,6 +76,19 @@ public class WechatUserServlet extends HttpServlet {
 				}
 				jsonobject.accumulate("sumcost", sumcost);
 			}
+			//获取已充话费信息
+			HavefeeUserService havefeeUserService = new HavefeeUserServiceImpl();
+			havefeeUserList = havefeeUserService.getList("openid", openid);
+			if(havefeeUserList.size() > 0){
+				//计算已充话费总和
+				for(Iterator iter =havefeeUserList.iterator();iter.hasNext();){
+					havefeeUser = new HavefeeUser();
+					havefeeUser = (HavefeeUser) iter.next();
+					sumhavefee = sumhavefee +havefeeUser.getTopupCost();
+				}
+				jsonobject.accumulate("sumhavefee", sumhavefee);
+			}
+			//============封装jsonObject==============================
 			wechatuserJson.accumulate("wechatuser", jsonobject);
 		}
 		PrintWriter out = resp.getWriter();
@@ -109,6 +133,30 @@ public class WechatUserServlet extends HttpServlet {
 
 	public void setSumcost(double sumcost) {
 		this.sumcost = sumcost;
+	}
+
+	public HavefeeUser getHavefeeUser() {
+		return havefeeUser;
+	}
+
+	public void setHavefeeUser(HavefeeUser havefeeUser) {
+		this.havefeeUser = havefeeUser;
+	}
+
+	public List<HavefeeUser> getHavefeeUserList() {
+		return havefeeUserList;
+	}
+
+	public void setHavefeeUserList(List<HavefeeUser> havefeeUserList) {
+		this.havefeeUserList = havefeeUserList;
+	}
+
+	public double getSumhavefee() {
+		return sumhavefee;
+	}
+
+	public void setSumhavefee(double sumhavefee) {
+		this.sumhavefee = sumhavefee;
 	}
 
 }
