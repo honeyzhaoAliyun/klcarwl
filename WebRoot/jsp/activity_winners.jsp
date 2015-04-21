@@ -28,13 +28,15 @@
 		</div>
 		<div class="content_win">
 			<img src="${ctxStatic}/activity/images/icon_m.png" /><b>&nbsp;获奖列表</b><br />
-			<ul>
-				<c:forEach items="${userInfoList}" var="userInfoList" varStatus="index">
-					<li><img src="${ctxStatic}/activity/images/tou.png" width="5%" /> &nbsp;${userInfoList.nickName }&nbsp;
-					${userInfoList.mobile}</li>
-					
-				</c:forEach>
-			</ul>
+			<marquee direction="down">
+				<ul>
+					<c:forEach items="${userInfoList}" var="userInfoList" varStatus="index">
+						<li><img src="${ctxStatic}/activity/images/tou.png" width="5%" /> &nbsp;${userInfoList.nickName }&nbsp;
+						${userInfoList.mobile}</li>
+						
+					</c:forEach>
+				</ul>
+			</marquee>
 		</div>
 		<div class="footer">
 			<img src="${ctxStatic}/activity/images/ewm.png" />
