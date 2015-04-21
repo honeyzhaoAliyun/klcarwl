@@ -648,7 +648,7 @@ public class IndexController extends BaseController {
 	        }
 	        UserInfo mobileCheckuser = userInfoService.getUserInfoByUsername(mobilephone);
 	        
-	        //验证码验证
+	       /* //验证码验证
 	        if(validateCode.equals("")){
 	        	result = new Result(Result.WARN, "验证码不能为空!", "validateCode");
 	            logger.debug(result.toString());
@@ -661,7 +661,7 @@ public class IndexController extends BaseController {
 	        	result = new Result(Result.WARN, "验证码不正确!", "validateCode");
 	            logger.debug(result.toString());
 	            return result;
-	        }
+	        }*/
 	        
 	        // 名称重复校验
 	        if (user.getMobile() != null && mobileCheckuser !=null ) {

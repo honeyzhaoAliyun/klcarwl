@@ -133,13 +133,13 @@ function dijian(){
 					  <div class="user">
 							<input type="text" placeholder="手机号" required="true" data-options="validType:'minLength[1]',missingMessage:''" class="easyui-validatebox form-control" name="mobilephone"></input>
 					  </div>
-					  <div class="password">
+					  <!-- <div class="password">
 					       <input type="text" name="validateCode" required="true" data-options="validType:'minLength[1]',missingMessage:''" class="easyui-validatebox form-control iptc"  placeholder="输入验证码">
 					       <div class="user_en">
 					           <span class="yzm" id="send_msg"><input type="button" value="获取验证码" ></span>
 			             	   <span class="yzm" id="send_after">180s</span>
 					       </div>
-					  </div>
+					  </div> -->
 				</div>
 				<div class="xbtn">
 					 <div class="btn_dl">
