@@ -65,6 +65,7 @@ public class WechatUserServlet extends HttpServlet {
 				jsonobject.accumulate("name", userInfo.getName());
 				jsonobject.accumulate("wechatkey", userInfo.getWechatKey());
 				jsonobject.accumulate("nickname", userInfo.getNickName());
+				jsonobject.accumulate("mobile", userInfo.getMobile());
 				
 				UserActivityService userActivityService = new UserActivityServiceImpl();
 				userActivityList = userActivityService.getList("parentUserInfo", userInfo);
