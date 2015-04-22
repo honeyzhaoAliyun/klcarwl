@@ -121,7 +121,10 @@ public class WeixinAutoLoginFilter implements Filter {
 					if(url.toString().contains("activity")){
 						oauthUrl = RestUtil.oAuthgetInvoke("uri", ConstantUtil.get("WULIU_IP")+url.toString(),"snsapi_userinfo");
 					}else{
-						oauthUrl = RestUtil.oAuthgetInvoke("uri", ConstantUtil.get("WULIU_IP")+url.toString(),"snsapi_base");
+						//不包含api接口请求 rest  wechatuser.do
+						if(!url.toString().contains("wechatuser.do")){
+							oauthUrl = RestUtil.oAuthgetInvoke("uri", ConstantUtil.get("WULIU_IP")+url.toString(),"snsapi_base");
+						}
 					}
 					
 					httpResponse.sendRedirect(oauthUrl);
