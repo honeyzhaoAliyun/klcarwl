@@ -123,9 +123,7 @@ public class WeixinAutoLoginFilter implements Filter {
 					}else{
 						oauthUrl = RestUtil.oAuthgetInvoke("uri", ConstantUtil.get("WULIU_IP")+url.toString(),"snsapi_base");
 					}
-					
 					httpResponse.sendRedirect(oauthUrl);
-					return;
 				}
 			}
 			
