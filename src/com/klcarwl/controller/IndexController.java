@@ -918,6 +918,7 @@ public class IndexController extends BaseController {
 				
 				userActivityList = userActivityService.getList("parentUserInfo", userInfo);
 				//计算话费总和
+				sumCost = 0D;
 				for(Iterator iter =userActivityList.iterator();iter.hasNext();){
 					userActivity = new UserActivity();
 					userActivity = (UserActivity) iter.next();
@@ -929,6 +930,7 @@ public class IndexController extends BaseController {
 			havefeeUserList = havefeeUserService.getList("userInfo", userInfo);
 			if(havefeeUserList.size() > 0){
 				//计算已充话费总和
+				sumhavefee= 0D;
 				for(Iterator iter =havefeeUserList.iterator();iter.hasNext();){
 					havefeeUser = new HavefeeUser();
 					havefeeUser = (HavefeeUser) iter.next();
