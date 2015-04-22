@@ -1,8 +1,10 @@
 package com.klcarwl.controller;
 
+import java.io.UnsupportedEncodingException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -28,6 +30,7 @@ import org.springframework.web.servlet.view.RedirectView;
 import com.klcarwl.common.utils.expressions.FinalStr;
 import com.klcarwl.model.Activity;
 import com.klcarwl.model.ActivityLog;
+import com.klcarwl.model.HavefeeUser;
 import com.klcarwl.model.Result;
 import com.klcarwl.model.SysLocale;
 import com.klcarwl.model.UserActivity;
@@ -35,6 +38,7 @@ import com.klcarwl.model.UserInfo;
 import com.klcarwl.model.ValidateLog;
 import com.klcarwl.service.ActivityLogService;
 import com.klcarwl.service.ActivityService;
+import com.klcarwl.service.HavefeeUserService;
 import com.klcarwl.service.SysLocaleService;
 import com.klcarwl.service.UserActivityService;
 import com.klcarwl.service.UserInfoService;
@@ -57,6 +61,8 @@ public class IndexController extends BaseController {
 	private ActivityService activityService;
 	@Autowired
 	private UserActivityService  userActivityService;
+	@Autowired
+	private HavefeeUserService havefeeUserService;
 	
 	private UserInfo userInfo;
 	
@@ -77,6 +83,14 @@ public class IndexController extends BaseController {
 	private Double sumCost = 0D; //B帮助A抢到的金额
 	
 	private Double BsumCost =0D; //B当前累计抢到的话费总额
+	
+	private double sumhavefee =0D;//已充值话费总额
+	
+	private HavefeeUser  havefeeUser;
+	
+	private List<UserInfo> userinfoList;
+	
+	private List<HavefeeUser> havefeeUserList;
 	
 	@RequestMapping(value = ("/index"), method = RequestMethod.GET)
 	public ModelAndView index(HttpServletRequest request,HttpServletResponse response) {	
@@ -880,6 +894,57 @@ public class IndexController extends BaseController {
 			Matcher m = p.matcher(str);
 			return m.find();
 		}
+		
+	
+	@ResponseBody
+	@RequestMapping(value = ("/wechatuser"), method = RequestMethod.GET)
+	public String index(@RequestParam(required = false) String openid,HttpServletRequest request,HttpServletResponse response) {	
+		userinfoList = new ArrayList<UserInfo>();
+		userActivityList = new ArrayList<UserActivity>();
+		havefeeUserList = new ArrayList<HavefeeUser>();
+		JSONObject jsonobject = new JSONObject();
+		JSONObject wechatuserJson = new JSONObject();
+		try {
+			request.setCharacterEncoding("UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+			
+		if(openid !=null && !openid.equals("")){
+			userinfoList = userInfoService.getList("wechatKey", openid);
+			if(userinfoList.size() > 0){
+				userInfo = new UserInfo();
+				userInfo = userinfoList.get(0);
+				jsonobject.accumulate("name", userInfo.getName());
+				jsonobject.accumulate("wechatkey", userInfo.getWechatKey());
+				jsonobject.accumulate("nickname", userInfo.getNickName());
+				jsonobject.accumulate("mobile", userInfo.getMobile());
+				
+				userActivityList = userActivityService.getList("parentUserInfo", userInfo);
+				//计算话费总和
+				for(Iterator iter =userActivityList.iterator();iter.hasNext();){
+					userActivity = new UserActivity();
+					userActivity = (UserActivity) iter.next();
+					sumCost = sumCost +userActivity.getHelpCost();
+				}
+				jsonobject.accumulate("sumcost", sumCost);
+			}
+			//获取已充话费信息
+			havefeeUserList = havefeeUserService.getList("openid", openid);
+			if(havefeeUserList.size() > 0){
+				//计算已充话费总和
+				for(Iterator iter =havefeeUserList.iterator();iter.hasNext();){
+					havefeeUser = new HavefeeUser();
+					havefeeUser = (HavefeeUser) iter.next();
+					sumhavefee = sumhavefee +havefeeUser.getTopupCost();
+				}
+				jsonobject.accumulate("sumhavefee", sumhavefee);
+			}
+			//============封装jsonObject==============================
+			wechatuserJson.accumulate("wechatuser", jsonobject);
+		}
+		return wechatuserJson.toString();
+	}
 	
 	
 	public UserInfo getUserInfo() {
@@ -941,6 +1006,30 @@ public class IndexController extends BaseController {
 	}
 	public void setBsumCost(Double bsumCost) {
 		BsumCost = bsumCost;
+	}
+	public HavefeeUser getHavefeeUser() {
+		return havefeeUser;
+	}
+	public void setHavefeeUser(HavefeeUser havefeeUser) {
+		this.havefeeUser = havefeeUser;
+	}
+	public List<UserInfo> getUserinfoList() {
+		return userinfoList;
+	}
+	public void setUserinfoList(List<UserInfo> userinfoList) {
+		this.userinfoList = userinfoList;
+	}
+	public List<HavefeeUser> getHavefeeUserList() {
+		return havefeeUserList;
+	}
+	public void setHavefeeUserList(List<HavefeeUser> havefeeUserList) {
+		this.havefeeUserList = havefeeUserList;
+	}
+	public double getSumhavefee() {
+		return sumhavefee;
+	}
+	public void setSumhavefee(double sumhavefee) {
+		this.sumhavefee = sumhavefee;
 	}
 	
 }
