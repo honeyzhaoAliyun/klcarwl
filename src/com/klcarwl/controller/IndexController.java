@@ -898,7 +898,7 @@ public class IndexController extends BaseController {
 	
 	@ResponseBody
 	@RequestMapping(value = ("/wechatuser"), method = RequestMethod.GET)
-	public String index(@RequestParam(required = false) String openid,HttpServletRequest request,HttpServletResponse response) {	
+	public String wechatuser(@RequestParam(required = false) String openid,HttpServletRequest request,HttpServletResponse response) {	
 		userinfoList = new ArrayList<UserInfo>();
 		userActivityList = new ArrayList<UserActivity>();
 		havefeeUserList = new ArrayList<HavefeeUser>();
