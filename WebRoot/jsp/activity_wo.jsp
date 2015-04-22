@@ -148,6 +148,7 @@ $(function(){
 	<div id="popDiv2" class="mydiv" style="display:none;">
 		<div class="diceng">
 			<div class="blank2"></div>
+			<div style="margin-top:15%;"></div>
 			<div class="box">
 				<div class="gb">
 					<img width="70%" src="${ctxStatic}/activity/images/gb.png" onclick="closeDivRSuccess()" />
