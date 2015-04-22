@@ -130,7 +130,6 @@ public class WeixinAutoLoginFilter implements Filter {
 					}
 					
 					httpResponse.sendRedirect(oauthUrl);
-					return;
 				}
 			}
 			

@@ -896,7 +896,7 @@ public class IndexController extends BaseController {
 			return m.find();
 		}
 		
-	
+	@ResponseBody
 	@RequestMapping(value = ("/wechatuser"), method = RequestMethod.GET)
 	public void wechatuser(@RequestParam(value="openid",required=true) String openid,HttpServletRequest request,HttpServletResponse response) {	
 		response.setContentType("text/plain;charset=utf-8");
@@ -926,7 +926,7 @@ public class IndexController extends BaseController {
 				jsonobject.accumulate("sumcost", sumCost);
 			}
 			//获取已充话费信息
-			havefeeUserList = havefeeUserService.getList("openid", openid);
+			havefeeUserList = havefeeUserService.getList("userInfo", userInfo);
 			if(havefeeUserList.size() > 0){
 				//计算已充话费总和
 				for(Iterator iter =havefeeUserList.iterator();iter.hasNext();){
