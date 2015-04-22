@@ -76,73 +76,77 @@ public class WeixinAutoLoginFilter implements Filter {
 			if(queryString !=null){
 				url.append("?"+queryString);
 			}
-			
-			Object openid = session.getAttribute("openid");
-			if(openid == null){
-				//---------授权后将获取到code--------------------
-				String code = httpRequest.getParameter("code");
-				if (code != null && !"".equals(code)) {
-					//----------------获取openid-------begin-----
-					String oAuthCode = RestUtil.oAuthCodegetInvoke("code", code);
-					JSONObject result = JSONObject.fromObject(oAuthCode);
-					JSONObject accessTokenOAuth = JSONObject.fromObject(result.get("accessTokenOAuth"));
-					openid = accessTokenOAuth.getString("openid");
-					/**______session openid_______*/
-					session.setAttribute("openid", openid);
-					//----------------获取openid-------end-------
-					conn2 = JDBCDataSource.getConnection();
-					sqlbuffer.append("SELECT user_info.ID,user_info.NAME,user_info.SEX,user_info.USER_NAME,user_info.NICK_NAME,user_info.MOBILE,user_info.PASSWORD,user_info.STATUS,user_info.EMAIL,user_info.IS_USE,user_info.WECHAT_KEY,user_info.CREATE_DATE,user_info.MODIFY_DATE,user_info.IP FROM USER_INFO ");
-					sqlbuffer.append("where user_info.WECHAT_KEY='"+openid+"'");	
-					try {
-						pstm2 = conn2.prepareStatement(sqlbuffer.toString());
-						rs2 = pstm2.executeQuery();
-						while (rs2.next()) {
-							memberUser = new UserInfo();
-							memberUser.setUserName(rs2.getString("USER_NAME")==null?"":rs2.getString("USER_NAME"));
+			/**************rest API请求区分  begin*******************/
+			if(!url.toString().contains("wechatuser.do")){
+				Object openid = session.getAttribute("openid");
+				if(openid == null){
+					//---------授权后将获取到code--------------------
+					String code = httpRequest.getParameter("code");
+					if (code != null && !"".equals(code)) {
+						//----------------获取openid-------begin-----
+						String oAuthCode = RestUtil.oAuthCodegetInvoke("code", code);
+						JSONObject result = JSONObject.fromObject(oAuthCode);
+						JSONObject accessTokenOAuth = JSONObject.fromObject(result.get("accessTokenOAuth"));
+						openid = accessTokenOAuth.getString("openid");
+						/**______session openid_______*/
+						session.setAttribute("openid", openid);
+						//----------------获取openid-------end-------
+						conn2 = JDBCDataSource.getConnection();
+						sqlbuffer.append("SELECT user_info.ID,user_info.NAME,user_info.SEX,user_info.USER_NAME,user_info.NICK_NAME,user_info.MOBILE,user_info.PASSWORD,user_info.STATUS,user_info.EMAIL,user_info.IS_USE,user_info.WECHAT_KEY,user_info.CREATE_DATE,user_info.MODIFY_DATE,user_info.IP FROM USER_INFO ");
+						sqlbuffer.append("where user_info.WECHAT_KEY='"+openid+"'");	
+						try {
+							pstm2 = conn2.prepareStatement(sqlbuffer.toString());
+							rs2 = pstm2.executeQuery();
+							while (rs2.next()) {
+								memberUser = new UserInfo();
+								memberUser.setUserName(rs2.getString("USER_NAME")==null?"":rs2.getString("USER_NAME"));
+							}
+							if(memberUser !=null){
+								httpResponse.sendRedirect(httpRequest.getRequestURI());
+								return;
+							}
+							memberUser = null;
+						} catch (SQLException e4) {
+							e4.printStackTrace();
+						} finally {
+							JDBCDataSource.closeAll(rs2, pstm2, conn2);
 						}
-						if(memberUser !=null){
-							httpResponse.sendRedirect(httpRequest.getRequestURI());
-							return;
-						}
-						memberUser = null;
-					} catch (SQLException e4) {
-						e4.printStackTrace();
-					} finally {
-						JDBCDataSource.closeAll(rs2, pstm2, conn2);
-					}
-					//将code存在session 中
-					session.setAttribute("code", code);
-					
-				}else{
-					/**
-					 * oauth授权
-					 */
-					//--------判断是否是活动页面 ：相应的判断是否弹出授权页面-----------
-					if(url.toString().contains("activity")){
-						oauthUrl = RestUtil.oAuthgetInvoke("uri", ConstantUtil.get("WULIU_IP")+url.toString(),"snsapi_userinfo");
+						//将code存在session 中
+						session.setAttribute("code", code);
+						
 					}else{
-						oauthUrl = RestUtil.oAuthgetInvoke("uri", ConstantUtil.get("WULIU_IP")+url.toString(),"snsapi_base");
+						/**
+						 * oauth授权
+						 */
+						//--------判断是否是活动页面 ：相应的判断是否弹出授权页面-----------
+						if(url.toString().contains("activity")){
+							oauthUrl = RestUtil.oAuthgetInvoke("uri", ConstantUtil.get("WULIU_IP")+url.toString(),"snsapi_userinfo");
+						}else{
+							oauthUrl = RestUtil.oAuthgetInvoke("uri", ConstantUtil.get("WULIU_IP")+url.toString(),"snsapi_base");
+						}
+						httpResponse.sendRedirect(oauthUrl);
 					}
-					httpResponse.sendRedirect(oauthUrl);
 				}
+				
+				/**
+				 * @author honey.zhao@aliyun.com
+				 * @Date  2015-04-13
+				 * eg.
+				 * 1)因为accesstonken 和 jsApi_ticket 每天的请求次数有限 经过 WechatSDK 
+				 * 增加access_token和jsapi_ticket监听每7000秒刷新一次 保存在 properties文件中
+				 * 2)WechatSDK 中添加获取access_token和jsapi_ticket 的REST接口 便于物流商城klcarwl调用[ (~ .~)嘻嘻 面向资源架构嘛 ROA 哥也小拽下名词]
+				 */
+				String jsApiticket = RestUtil.jsApiticketInvoke(null, null);
+				JSONObject jsApiticketResult = JSONObject.fromObject(jsApiticket);
+				JSONObject jsApiticketJson = JSONObject.fromObject(jsApiticketResult.get("jsapitoken"));
+				
+				session.setAttribute("appId", jsApiticketJson.getString("appId"));
+				session.setAttribute("appSecret", jsApiticketJson.getString("appSecret"));
+				session.setAttribute("token", jsApiticketJson.getString("token"));
+				session.setAttribute("jsapi_ticket", jsApiticketJson.getString("jsapi_ticket"));
 			}
+			/**************rest API请求区分  end  *******************/
 			
-			/**
-			 * @author honey.zhao@aliyun.com
-			 * @Date  2015-04-13
-			 * eg.
-			 * 1)因为accesstonken 和 jsApi_ticket 每天的请求次数有限 经过 WechatSDK 
-			 * 增加access_token和jsapi_ticket监听每7000秒刷新一次 保存在 properties文件中
-			 * 2)WechatSDK 中添加获取access_token和jsapi_ticket 的REST接口 便于物流商城klcarwl调用[ (~ .~)嘻嘻 面向资源架构嘛 ROA 哥也小拽下名词]
-			 */
-			String jsApiticket = RestUtil.jsApiticketInvoke(null, null);
-			JSONObject jsApiticketResult = JSONObject.fromObject(jsApiticket);
-			JSONObject jsApiticketJson = JSONObject.fromObject(jsApiticketResult.get("jsapitoken"));
-			
-			session.setAttribute("appId", jsApiticketJson.getString("appId"));
-			session.setAttribute("appSecret", jsApiticketJson.getString("appSecret"));
-			session.setAttribute("token", jsApiticketJson.getString("token"));
-			session.setAttribute("jsapi_ticket", jsApiticketJson.getString("jsapi_ticket"));
 		}
 		chain.doFilter(httpRequest, httpResponse);
 	}
