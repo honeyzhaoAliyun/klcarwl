@@ -124,6 +124,8 @@ public class WeixinAutoLoginFilter implements Filter {
 						//不包含api接口请求 rest  wechatuser
 						if(!url.toString().contains("wechatuser")){
 							oauthUrl = RestUtil.oAuthgetInvoke("uri", ConstantUtil.get("WULIU_IP")+url.toString(),"snsapi_base");
+						}else{
+							oauthUrl = ConstantUtil.get("WULIU_IP")+url.toString();
 						}
 					}
 					

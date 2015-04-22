@@ -897,9 +897,8 @@ public class IndexController extends BaseController {
 		}
 		
 	
-	@ResponseBody
 	@RequestMapping(value = ("/wechatuser"), method = RequestMethod.GET)
-	public void wechatuser(@RequestParam(value="openid",required=false) String openid,HttpServletRequest request,HttpServletResponse response) {	
+	public void wechatuser(@RequestParam(value="openid",required=true) String openid,HttpServletRequest request,HttpServletResponse response) {	
 		response.setContentType("text/plain;charset=utf-8");
 		userinfoList = new ArrayList<UserInfo>();
 		userActivityList = new ArrayList<UserActivity>();
