@@ -1,6 +1,7 @@
 package com.klcarwl.controller;
 
-import java.io.UnsupportedEncodingException;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -898,17 +899,13 @@ public class IndexController extends BaseController {
 	
 	@ResponseBody
 	@RequestMapping(value = ("/wechatuser"), method = RequestMethod.GET)
-	public String wechatuser(@RequestParam(required = false) String openid,HttpServletRequest request,HttpServletResponse response) {	
+	public void wechatuser(@RequestParam(value="openid",required=false) String openid,HttpServletRequest request,HttpServletResponse response) {	
+		response.setContentType("text/plain;charset=utf-8");
 		userinfoList = new ArrayList<UserInfo>();
 		userActivityList = new ArrayList<UserActivity>();
 		havefeeUserList = new ArrayList<HavefeeUser>();
 		JSONObject jsonobject = new JSONObject();
 		JSONObject wechatuserJson = new JSONObject();
-		try {
-			request.setCharacterEncoding("UTF-8");
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-		}
 			
 		if(openid !=null && !openid.equals("")){
 			userinfoList = userInfoService.getList("wechatKey", openid);
@@ -943,7 +940,18 @@ public class IndexController extends BaseController {
 			//============封装jsonObject==============================
 			wechatuserJson.accumulate("wechatuser", jsonobject);
 		}
-		return wechatuserJson.toString();
+		PrintWriter out=null;
+		try {
+			out = response.getWriter();			
+			out.print(wechatuserJson);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}finally{
+			if(out!= null){
+				out.flush();
+				out.close();				
+			}
+		}
 	}
 	
 	
