@@ -151,12 +151,11 @@ $(function(){
 	<div id="popDiv2" class="mydiv" style="display:none;">
 		<div class="diceng">
 			<div class="blank2"></div>
-			<div style="margin-top:15%;"></div>
 			<div class="box">
 				<div class="gb">
 					<img width="70%" src="${ctxStatic}/activity/images/gb.png" onclick="closeDivRSuccess()" />
 				</div>
-				<span>关注快乐物流领取话费</span> <img src="${ctxStatic}/activity/images/ts_ewm.png" width="90%" />
+				<span>关注快乐物流领取话费</span> <img src="${ctxStatic}/activity/images/ts_ewm.png" width="70%" />
 				<p class="tk">长按二维码识别图中二维码 关注领话费</p>
 			</div>
 		</div>
