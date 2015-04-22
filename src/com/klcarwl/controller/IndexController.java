@@ -397,8 +397,8 @@ public class IndexController extends BaseController {
 			 * describe:获取微信公众号，通过【当前微信用户openID】获取微信用户信息
 			 *  {@link RestUtil.getUserInfo}
 			 */
-			results = RestUtil.getInvoke("openid",openid);
 			JSONObject result = new JSONObject();
+			results = RestUtil.getInvoke("openid",openid)==null ?"":RestUtil.getInvoke("openid",openid);
 			if (results != "" || results.equals("0") ) {
 				result = JSONObject.fromObject(results);
 				JSONObject openIdUser = JSONObject.fromObject(result.get("openIdUser"));
