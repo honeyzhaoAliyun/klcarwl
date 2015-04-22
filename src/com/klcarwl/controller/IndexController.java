@@ -637,7 +637,7 @@ public class IndexController extends BaseController {
 	     */
 		@RequestMapping(value = ("/_saveActivity"), method = RequestMethod.POST)
 	    @ResponseBody
-	    public Result saveActivity(@RequestParam(value="sumCost",required=false) String sumCost,@RequestParam(value="mobilephone") String mobilephone,@RequestParam(value="validateCode") String validateCode,@ModelAttribute("model") UserInfo user,HttpServletRequest request) {
+	    public Result saveActivity(@RequestParam(value="sumCost",required=false) String sumCost,@RequestParam(value="mobilephone") String mobilephone,@ModelAttribute("model") UserInfo user,HttpServletRequest request) {
 	        Result result = null;
 	        user.setPassword("123456");
 	        user.setMobile(mobilephone);
