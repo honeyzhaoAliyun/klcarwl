@@ -69,7 +69,7 @@ public class UserInfo extends BaseEntity{
 	//当前余额
 	private Double currentCost;
 	//是否可领话费
-	private boolean receivied;
+	private Integer receivied;
 	
 	@Column(name="plate_no")
 	public String getPlateNo() {
@@ -279,13 +279,12 @@ public class UserInfo extends BaseEntity{
 		this.currentCost = currentCost;
 	}
 	@Column(name = "receivied",columnDefinition="INT default 0")
-	public boolean isReceivied() {
+	public Integer getReceivied() {
 		return receivied;
 	}
 
-	public void setReceivied(boolean receivied) {
+	public void setReceivied(Integer receivied) {
 		this.receivied = receivied;
 	}
-	
 	
 }

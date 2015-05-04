@@ -913,6 +913,8 @@ public class IndexController extends BaseController {
 				userInfo = userinfoList.get(0);
 				
 				//只要有在微信号发送 '领话费'就标记 可领话费
+				userInfo.setReceivied(1);
+				userInfoService.update(userInfo);
 				
 				jsonobject.accumulate("name", userInfo.getName());
 				jsonobject.accumulate("wechatkey", userInfo.getWechatKey());
