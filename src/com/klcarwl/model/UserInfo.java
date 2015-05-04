@@ -68,6 +68,8 @@ public class UserInfo extends BaseEntity{
 	private String comMobile;
 	//当前余额
 	private Double currentCost;
+	//是否可领话费
+	private boolean receivied;
 	
 	@Column(name="plate_no")
 	public String getPlateNo() {
@@ -276,4 +278,14 @@ public class UserInfo extends BaseEntity{
 	public void setCurrentCost(Double currentCost) {
 		this.currentCost = currentCost;
 	}
+	@Column(name = "receivied",columnDefinition="INT default 0")
+	public boolean isReceivied() {
+		return receivied;
+	}
+
+	public void setReceivied(boolean receivied) {
+		this.receivied = receivied;
+	}
+	
+	
 }
